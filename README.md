@@ -1,40 +1,96 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/pages/api-reference/create-next-app).
+
+# Gasless Token Claim DApp
+
+🚀 A simple Next.js + Tailwind CSS decentralized app that lets users claim tokens **without paying gas fees**.  
+Powered by a smart contract with off-chain signed messages verified on-chain.
+
+---
+
+## Features
+
+- User authentication with Privy (emailless login)
+- Off-chain signature generation on backend for gasless claims
+- Frontend built with Next.js and Tailwind CSS
+- Solidity smart contract verifying signed claims
+- Easy to customize claim amount and token contract address
+
+---
+
+## Tech Stack
+
+- **Frontend:** Next.js (TypeScript), Tailwind CSS  
+- **Backend:** Next.js API routes for signature generation  
+- **Blockchain:** Solidity smart contract (Ethereum-compatible)  
+- **Wallet:** Ethers.js and Privy React SDK  
+
+---
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- Node.js v18+
+- npm or yarn
+- An Ethereum wallet private key for signing claims (do **not** use your main wallet)
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Installation
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+1. Clone this repo:
 
-[API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+   ```bash
+   git clone https://github.com/yourusername/gasless-token-claim.git
+   cd gasless-token-claim
+   ```
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) instead of React pages.
+2. Install dependencies:
 
-This project uses [`next/font`](https://nextjs.org/docs/pages/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+   ```bash
+   npm install
+   ```
 
-## Learn More
+3. Create `.env.local` file with:
 
-To learn more about Next.js, take a look at the following resources:
+   ```env
+   PRIVATE_KEY=your_signer_private_key
+   SIGNER_ADDRESS=your_signer_public_address
+   NEXT_PUBLIC_APP_ENV=development
+   ```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn-pages-router) - an interactive Next.js tutorial.
+4. Update smart contract address and ABI in `pages/index.tsx` (replace `CONTRACT_ADDRESS` and `ABI` constants).
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+5. Run the development server:
 
-## Deploy on Vercel
+   ```bash
+   npm run dev
+   ```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+6. Open [http://localhost:3000](http://localhost:3000) to view the app.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/pages/building-your-application/deploying) for more details.
+---
+
+## Usage
+
+- Click **Claim Tokens** to request tokens gaslessly.  
+- The backend signs the message off-chain.  
+- The smart contract verifies the signature and transfers tokens to the user.
+
+---
+
+## Smart Contract Overview
+
+The contract verifies signatures signed by the backend's private key, allowing token claims without requiring users to pay gas for signature verification.
+
+---
+
+## Security Notes
+
+- Keep your `PRIVATE_KEY` secure and do **not** expose it on the frontend.  
+- Use a dedicated wallet for signing messages.  
+- Validate all inputs carefully on backend and smart contract.
+
+---
+
+## Contributing
+
+Feel free to open issues or submit pull requests!
+
